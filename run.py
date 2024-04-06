@@ -29,6 +29,7 @@ def validate_data(values):
     Insdie the try, converts all strings values into integers. Raises Valueserror if strings cannot be covnerted into int, or if there aren't exactly 6 values.
     """
     try:
+        [int(value) for value in values]
         if len(values) != 6:
             raise ValueError(
                 f"Exactly 6 values required, you provided {len(values)}"
