@@ -141,4 +141,27 @@ def main():
     update_worksheet(stock_data, "stock")
 
 print("Welcome to Love Sadwiches Data Automation!")
-main()
+stock_data = main()
+
+def get_stock_values(data):
+    """
+    Retrieve the headings from the 'stock' worksheet and create a dictionary
+    mapping those headings to the provided data values.
+    
+    Parameters:
+    - data: A list of stock data values to be matched with the headings.
+    
+    Returns:
+    A dictionary with headings as keys and corresponding data values as values.
+    """
+    # Retrieve the headings from the first row of the 'stock' worksheet
+    headings = SHEET.worksheet("stock").row_values(1)
+    
+    # Create a dictionary mapping headings to data using dictionary comprehension
+    stock_values = {headings[i]: data[i] for i in range(len(headings))}
+    
+    return stock_values
+
+# Usage
+stock_values = get_stock_values(stock_data)
+print(stock_values)
